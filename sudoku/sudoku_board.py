@@ -1,4 +1,4 @@
-from backtracking_algo import *
+from .backtracking_algo import *
 import random
 import copy
 

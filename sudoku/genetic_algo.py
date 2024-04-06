@@ -3,8 +3,8 @@ import random
 
 class GeneticSolver(object):
 
-    def __init__(self, genes=None, target=None, chromosome=None):
-        self.genes = genes
+    def __init__(self, board=None, target=None, chromosome=None):
+        self.board = board
         self.target =target
         if chromosome == None:
             self.chromosome = self.create_gnome()
@@ -12,15 +12,14 @@ class GeneticSolver(object):
             self.chromosome = chromosome
         self.fitness = self.fitness()
 
-    def mutated_genes(self):
-        return random.choice(self.genes)
+    def mutated_board(self):
+        return random.choice(self.board)
 
     def create_gnome(self):
 
-    # Create chromosome
-
+        # Create chromosome
         gnome_len = len(self.target)
-        return [self.mutated_genes() for _ in range(gnome_len)]
+        return [self.mutated_board() for _ in range(gnome_len)]
 
     def mate(self, parent2):
 
@@ -37,9 +36,9 @@ class GeneticSolver(object):
             elif prob < 0.96:
                 child.append(p2)
             else:
-                child.append(self.mutated_genes())
+                child.append(self.mutated_board())
 
-        return GeneticSolver(parent2.genes,parent2.target, child)
+        return GeneticSolver(parent2.board,parent2.target, child)
 
     def fitness(self):
 
