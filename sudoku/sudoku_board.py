@@ -4,7 +4,6 @@ import copy
 
 class SudokuBoard:
     def __init__(self, size, complexity):
-        self.iterations = 0
         self.board = None
         self.solved_board = None
         self.generate_sudoku(size, complexity)
