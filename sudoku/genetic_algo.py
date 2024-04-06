@@ -73,3 +73,51 @@ class GeneticSolver(object):
             print ('Generation: {}\tString: {}\tFitness: {}'.format(generation,''.join(population[0].chromosome),population[0].fitness))
             generation += 1
         print ('Generation: {}\tString: {}\tFitness: {}'.format(generation,''.join(population[0].chromosome),population[0].fitness))
+    
+    def mate_collision(self, parent2):
+
+        # chromosome for offspring
+
+        child = []
+        for p in range(parent2):
+            for row in range(size):
+                for col in range(size):
+                    # random probability
+                    prob = random.random()
+
+                    if prob < 0.48:
+                        child.append(parent2[p][row][col])
+                    elif prob < 0.96:
+                        child.append(self.chromosome[row][col])
+                    else:
+                        child.append(self.mutated_board())
+
+        return GeneticSolver(parent2.board,parent2.target, child)
+
+    def collision(self,board, row, col, num, size):
+            # Check if number exists in same row
+            if num in board[row]:
+                return True
+
+            # Check if number exists in same column
+            for r in range(size):
+                if board[r][col] == num:
+                    return True
+
+            box_size = int(size ** 0.5)
+            start_row = row - row % box_size
+            start_col = col - col % box_size
+
+            # Check if the number is already in the box
+            for r in range(box_size):
+                for c in range(box_size):
+                    if board[r + start_row][c + start_col] == num:
+                        return True
+
+            return False
+
+    def fitness_collisions(self,board,target, size):
+        for row in range(size):
+            for col in range(size):
+                while self.collision(board, row, col, board[row][col], size):
+                    fitness+=1

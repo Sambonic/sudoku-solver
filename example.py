@@ -1,6 +1,7 @@
 from sudoku.sudoku_board import SudokuBoard
 from sudoku.backtracking_algo import *
 from sudoku.genetic_algo import *
+
 import copy 
 
 # Initialize sudoku board
