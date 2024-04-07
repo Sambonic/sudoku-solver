@@ -3,7 +3,7 @@ import random
 import time
 import psutil
 
-class GeneticSolver(object):
+class GeneticSolver:
 
     def __init__(self, board=None, target=None, chromosome=None):
         self.board = board

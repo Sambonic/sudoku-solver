@@ -6,7 +6,7 @@ import time
 import psutil
 # Initialize sudoku board
 size = 9
-complexity = 'Very high'
+complexity = 'Medium'
 sudoku_board = SudokuBoard(size, complexity)
 unsolved_board = copy.deepcopy(sudoku_board.board)
 print("Generated Sudoku Puzzle:")
@@ -23,7 +23,6 @@ sudoku_board.print_sudoku(sudoku_board.solved_board)
 print("\nNumber Of Iterations:", solver.get_iterations())
 print(f"\nExecution time: {solver.get_elapsed():.4f} seconds")
 print(f"\nExecution memory: {solver.get_memory()} MB")
-
 
 
 

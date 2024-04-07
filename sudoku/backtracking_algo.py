@@ -1,6 +1,6 @@
 import time
 import psutil
-
+import random
 class BacktrackingSolver:
     def __init__(self):
         self.iterations = 0
@@ -37,7 +37,6 @@ class BacktrackingSolver:
 
         for row in range(size):
             for col in range(size):  ## iterate over each cell.
-
                 if board[row][col] == 0: ## if the current cell empty
 
                     for num in range(1, size + 1):  ## So we can add a number with value from 1 to size(9 in the standard form)
@@ -72,3 +71,6 @@ class BacktrackingSolver:
     
     def get_memory(self):
         return self.memory_used
+
+
+    
