@@ -14,14 +14,13 @@ sudoku_board.print_sudoku()
 
 # Solving the Puzzle using Backtracking Algorithm
 solver = BacktrackingSolver()
-
-
 sudoku_board.solved_board = solver.backtracking_algorithm(sudoku_board.board, size)
 
-sudoku_board.iterations = solver.get_iterations()
 print("\nSolving Sudoku Puzzle:")
+
 sudoku_board.print_sudoku(sudoku_board.solved_board)
-print("\nNumber Of Iterations:", sudoku_board.iterations)
+
+print("\nNumber Of Iterations:", solver.get_iterations())
 print(f"\nExecution time: {solver.get_elapsed():.4f} seconds")
 print(f"\nExecution memory: {solver.get_memory()} MB")
 
