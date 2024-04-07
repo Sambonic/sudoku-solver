@@ -1,5 +1,7 @@
 
 import random
+import time
+import psutil
 
 class GeneticSolver(object):
 
@@ -12,6 +14,8 @@ class GeneticSolver(object):
             self.chromosome = chromosome
         self.fitness = self.fitness()
         self.iterations = 0
+        self.elapsed_time = 0
+        self.memory_used = 0
 
 
     def mutated_board(self):
@@ -51,6 +55,9 @@ class GeneticSolver(object):
         return fitness      
 
     def genetic_algorithm(self, population_list, population_size):
+        genetic_start = time.time()
+        start_mem = psutil.Process().memory_info().rss
+
         generation = 1
         found = False
         population = population_list
@@ -75,7 +82,18 @@ class GeneticSolver(object):
             population = new_generation
             print ('Generation: {}\tSudoku: {}\tFitness: {}'.format(generation,''.join(population[0].chromosome),population[0].fitness))
             generation += 1
+
+        genetic_end = time.time()
+        end_mem = psutil.Process().memory_info().rss
+        self.memory_used = round((end_mem - start_mem) / (1024**2), 3)
+        self.elapsed_time = genetic_end - genetic_start
         print ('Generation: {}\tSudoku: {}\tFitness: {}'.format(generation,''.join(population[0].chromosome),population[0].fitness))
 
     def get_iterations(self):
         return self.iterations 
+
+    def get_elapsed(self):
+        return self.elapsed_time
+
+    def get_memory(self):
+        return self.memory_used

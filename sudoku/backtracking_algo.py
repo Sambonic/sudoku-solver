@@ -1,8 +1,11 @@
-
+import time
+import psutil
 
 class BacktrackingSolver:
     def __init__(self):
         self.iterations = 0
+        self.elapsed_time = 0
+        self.memory_used = 0
     def is_valid(self,board, row, col, num, size):
             # Check if number exists in same row
             if num in board[row]:
@@ -29,29 +32,43 @@ class BacktrackingSolver:
             return True
                 
     def backtracking_algorithm(self,board, size):
-            for row in range(size):
-                for col in range(size):  ## iterate over each cell.
+        backtracking_start = time.time()
+        start_mem = psutil.Process().memory_info().rss
 
-                    if board[row][col] == 0: ## if the current cell empty
+        for row in range(size):
+            for col in range(size):  ## iterate over each cell.
 
-                        for num in range(1, size + 1):  ## So we can add a number with value from 1 to size(9 in the standard form)
-                            self.iterations += 1
-                            if self.is_valid(board, row, col, num, size): ## check the validity of num
-                                board[row][col] = num
-                                if self.backtracking_algorithm(board, size):
+                if board[row][col] == 0: ## if the current cell empty
 
-                                    return board ## The functino will return true when the entire Sudoku puzzle
-                                                ## is filled with valid numbers.
+                    for num in range(1, size + 1):  ## So we can add a number with value from 1 to size(9 in the standard form)
+                        self.iterations += 1
+                        if self.is_valid(board, row, col, num, size): ## check the validity of num
+                            board[row][col] = num
+                            if self.backtracking_algorithm(board, size):
+                                backtracking_end = time.time()
+                                self.elapsed_time = backtracking_end - backtracking_start
+                                return board ## The functino will return true when the entire Sudoku puzzle
+                                            ## is filled with valid numbers.
 
 
-                                board[row][col] = 0
-                                                ## this to reset the current cell to 0 because
-                                                ## num in this case will not lead to the solution
-                                                ## So we need to backtrack and try another value.
+                            board[row][col] = 0
+                                            ## this to reset the current cell to 0 because
+                                            ## num in this case will not lead to the solution
+                                            ## So we need to backtrack and try another value.
 
-                        return None ## the solv function will return false when all numbers from 1 to size
-                                        ## not valid solution.
-            return board
+                    return None ## the solv function will return false when all numbers from 1 to size
+                                    ## not valid solution.
+        backtracking_end = time.time()
+        end_mem = psutil.Process().memory_info().rss
+        self.memory_used = round((end_mem - start_mem) / (1024**2),3)
+        self.elapsed_time = backtracking_end - backtracking_start
+        return board
 
     def get_iterations(self):
         return self.iterations
+
+    def get_elapsed(self):
+        return self.elapsed_time
+    
+    def get_memory(self):
+        return self.memory_used
