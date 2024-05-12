@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Rubik";
+  src: url("./assets/Rubik.ttf") format("truetype");
+}
+
+body {
+  @apply font-[Rubik] bg-slate-950 select-none overflow-hidden;
+}
+
+.content {
+  @apply w-screen h-screen relative before:absolute before:bg-gradient-to-tr before:from-pink-600 before:via-purple-600 before:to-sky-600 before:-z-10 flex items-center justify-center before:w-[200%] before:h-[200%] before:animate-spin;
+}
+
+.app {
+  @apply w-screen h-screen rounded-lg flex items-center justify-center max-w-screen-xl m-auto z-20;
+}
+
+/* board */
+.board {
+  @apply grid w-[450px] h-[450px] bg-slate-900 rounded-lg gap-0.5 overflow-hidden shadow-2xl shadow-sky-800/30;
+}
+.sz-9 {
+  @apply grid-cols-9 grid-rows-9;
+}
+.sz-6 {
+  @apply grid-cols-6 grid-rows-6;
+}
+.sz-4 {
+  @apply grid-cols-4 grid-rows-4;
+}
+.cell {
+  @apply bg-slate-800 cursor-pointer hover:bg-slate-700 w-full h-full flex leading-[48px] items-center text-center text-white font-medium text-2xl justify-center outline-none;
+}
+.cell-active {
+  @apply !bg-slate-600;
+}
+
+/* stats */
+.stats-item {
+  @apply flex flex-col justify-center items-center w-fit;
+}
+.stats-icon {
+  @apply w-10 h-10 mt-3;
+}
+.stats-value {
+  @apply text-neutral-300 text-2xl font-bold w-20 block m-auto text-center;
+}
+.stats-unit {
+  @apply text-neutral-400 text-sm font-medium;
+}
+
+/* btns */
+.btn {
+  @apply py-2 px-6 font-semibold rounded-lg transition hover:scale-105 active:scale-95 border-b-4 disabled:opacity-50 disabled:pointer-events-none;
+}
+.btn-primary {
+  @apply bg-emerald-600 text-emerald-50 border-emerald-800 hover:bg-emerald-500 active:border-emerald-500;
+}
+.btn-secondary {
+  @apply bg-rose-600 text-rose-50  border-b-rose-800 hover:bg-rose-500 active:border-rose-500;
+}
+.btn-grey {
+  @apply bg-sky-600 border-b-sky-800 hover:bg-sky-500 text-white active:border-sky-500;
+}
+
+/* menu */
+.menu {
+  @apply relative;
+}
+.menu-title {
+  @apply text-neutral-400 text-sm font-medium mb-2;
+}
+.menu-btn {
+  @apply text-indigo-500 ring-2 ring-indigo-500 font-medium tracking-wide w-full text-start py-2 px-4 rounded-lg;
+}
+.menu-list {
+  @apply hover:cursor-pointer transition bg-slate-900 rounded-xl text-white font-medium overflow-hidden absolute w-[calc(100%+6px)] top-[76px] z-50 left-2/4 -translate-x-2/4 shadow-lg shadow-indigo-500/10;
+}
+.menu-item {
+  @apply hover:cursor-pointer transition hover:bg-slate-800 px-6 py-3 hover:text-indigo-500;
+}
+
+/* slider */
+.slider {
+  -webkit-appearance: none;
+  -webkit-transition: 0.2s;
+  @apply w-full h-4 rounded-md bg-indigo-700 outline-none hover:bg-indigo-600 transition-all duration-300 hover:rounded-full active:h-6;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply appearance-none w-6 h-6 rounded-full cursor-pointer bg-indigo-300;
+}
+
+/* model */
+@keyframes spin {
+  to {
+    content: var(--tw-content);
+    transform: rotate(360deg);
+  }
+}
+.modal-overlay {
+  @apply w-screen absolute z-50 h-screen top-0 left-0 before:bg-gradient-to-br before:from-purple-900/60 before:to-sky-900/60 before:w-[200%] before:h-[200%] before:absolute before:-top-1/2 before:-left-1/2;
+
+  animation: roa;
+}
+.modal-overlay::before {
+  content: var(--tw-content);
+  animation: spin 2s linear infinite;
+}
+.modal {
+  @apply w-[800px] h-[600px] flex flex-col p-10 bg-slate-950 relative top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 rounded-lg shadow-2xl shadow-sky-700/20;
+}
+.modal-close-btn {
+  @apply bg-rose-600/20 rounded-full p-1 absolute disabled:hover:bg-rose-600/20 top-4 right-4 hover:bg-rose-600 transition disabled:opacity-50;
+}
+.modal-content {
+  @apply flex flex-1 flex-col justify-center items-center space-y-10;
+}
+.timer {
+  @apply top-5 left-5 absolute text-indigo-300 font-medium flex items-center gap-2;
+}
+.steps {
+  @apply mt-16 space-y-6;
+}
+.step {
+  @apply text-indigo-100 flex items-center gap-2 font-bold;
+}
+.done-step {
+}
