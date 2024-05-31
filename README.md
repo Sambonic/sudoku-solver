@@ -2,7 +2,7 @@
 
 This is a Sudoku solver for puzzles of various sizes that utilizes backtracking and genetic algorithms. It is implemented in Python and built using Electron JS.
 
-#### Last Updated: June 1st, 2023
+#### Last Updated: June 1st, 2024
 ## Table of Contents
 
 1. [Introduction](#introduction)
