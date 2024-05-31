@@ -64,7 +64,7 @@ python -m venv env
 
 <a name="usage"></a>
 ## Usage
-![Sudoku Solver App Screenshot](assets/solver.png)
+![Sudoku Solver App Screenshot](images/solver.png)
 0. Start the application by running `npm start` in the terminal
 1. Launch the application.
 2. Select the size of the Sudoku board you want to solve (9x9, 6x6, or 4x4).
