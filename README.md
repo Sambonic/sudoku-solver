@@ -6,15 +6,21 @@ This is a Sudoku solver for puzzles of various sizes that utilizes backtracking 
 ## Table of Contents
 
 1. [Introduction](#introduction)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Features](#features)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Usage](#usage)
 5. [Acknowledgement](#acknowledgements)
 
 <a name="introduction"></a>
 ## Introduction 
 Sudoku is a popular logic puzzle that requires filling a 9x9 grid with digits 1-9 such that each row, column, and 3x3 sub-grid contains all the digits without repetition. This project creates a user-friendly application that utilizes two algorithms, backtracking and genetic algorithm, to solve Sudoku puzzles of varying difficulties while educating users on the solving process.
 
+<a name="features"></a>
+## Features 
+- Sudoku Board Sizes: Our app supports solving Sudoku puzzles of various sizes: 9x9, 6x6, and 4x4.
+- Solving Algorithms: The solver utilizes two main algorithms: backtracking and genetic algorithms.
+- Insights: Users can gain insights into the solving process, including solving time, memory usage, and iterations taken for each algorithm.
+- Testing: We provide a testing feature where users can evaluate the solver's performance by running it against a dataset containing 500 random Sudoku boards with their solutions, sourced from a larger collection of - 10,000 puzzles stored in a CSV format.
 
 <a name="installation"></a>
 ## Installation
